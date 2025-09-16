@@ -23,15 +23,21 @@
                 <li><a href="Agenda.html">Agenda Warga</a></li>
                     <h2>Buat Agenda Anda</h2>
 
-    <form action="simpan_agenda.php" method="post">
-        <label for="kegiatan">Kegiatan:</label><br>
-        <input type="text" id="kegiatan" name="kegiatan" required><br><br>
+    <div class="container form-container">
+        <h2>Tambah Agenda Baru</h2>
+        <form id="agendaForm">
+            <label for="agendaDate">Tanggal:</label>
+            <input type="date" id="agendaDate" required>
 
-        <label for="waktu">Waktu:</label><br>
-        <input type="time" id="waktu" name="waktu" required><br><br>
+            <label for="agendaTime">Waktu:</label>
+            <input type="time" id="agendaTime" required>
 
-        <input type="submit" value="Simpan Agenda">
-    </form>
+            <label for="agendaTitle">Kegiatan:</label>
+            <input type="text" id="agendaTitle" required>
+
+            <button type="submit">Tambah Agenda</button>
+        </form>
+    </div>
 
             </body>
                 <li><a href="#">Pengumuman</a></li>
