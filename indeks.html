@@ -6,10 +6,52 @@
     <title>Portal RT 07 Net - Dusun Karangturi</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <style>
+        .gradient-blue {
+            background: linear-gradient(135deg, #1e3a8a, #60a5fa);
+        }
+        .gradient-purple {
+            background: linear-gradient(135deg, #6b21a8, #c084fc);
+        }
+        .gradient-grey {
+            background: linear-gradient(135deg, #4b5563, #9ca3af);
+        }
+        .gradient-green {
+            background: linear-gradient(135deg, #059669, #34d399);
+        }
+        .btn-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .section-title {
+            color: #1e3a8a;
+            border-bottom: 3px solid #60a5fa;
+            padding-bottom: 0.5rem;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- Komentar untuk Pak RT: Ini adalah header halaman yang berisi logo RT 07 Net dan menu navigasi. Menu ini memungkinkan warga beralih antar section seperti Home, Film, Agenda, Pengumuman, CCTV, dan Status Internet. -->
+    <!-- Komentar untuk Pak RT: Ini adalah header halaman yang berisi logo RT 07 Net dan menu navigasi. Menu ini memungkinkan warga beralih antar section seperti Home, Film, Agenda, Pengumuman, CCTV, dan Status Internet, semuanya dalam satu halaman. -->
     <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-6">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
             <div class="logo flex items-center space-x-4">
@@ -20,13 +62,20 @@
                 </div>
             </div>
             <nav class="mt-4 md:mt-0">
-                
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+                    <li><a href="#" class="hover:underline" onclick="showSection('home-content')">Home</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('film-content')">Film & TV</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('agenda-content')">Agenda Warga</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('pengumuman-content')">Pengumuman</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('cctv-content')">CCTV Jogja</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('internet-content')">Internet Status</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8">
-        <!-- Komentar untuk Pak RT: Bagian ini adalah konten utama yang berisi semua section (Home, Film, Pengumuman, CCTV, dan Internet Status). Hanya satu section yang ditampilkan pada satu waktu, dikontrol oleh JavaScript di bagian bawah. -->
+        <!-- Komentar untuk Pak RT: Bagian ini adalah konten utama yang berisi semua section (Home, Film, Agenda, Pengumuman, CCTV, dan Internet Status). Hanya satu section yang ditampilkan pada satu waktu, dikontrol oleh JavaScript di bagian bawah. -->
         <section id="home-content" class="fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Selamat Datang di Portal RT 07 Net</h2>
             <ul class="list-disc pl-6 mb-6">
@@ -35,7 +84,7 @@
                 <li>Cek jadwal kegiatan, pengumuman, dan CCTV Jogja di sini</li>
             </ul>
             <div class="video-container mb-6">
-                <iframe width="100%" height="450" src="https://geo.dailymotion.com/player.html?video=k46igSmSMGBIiWsXtWk" frameborder="0" allowfulscreen></iframe>
+                <iframe width="100%" height="450" src="https://geo.dailymotion.com/player.html?video=k46igSmSMGBIiWsXtWk" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
@@ -45,7 +94,7 @@
                 <i class="fas fa-play-circle text-3xl"></i>
                 <span class="text-lg font-semibold">Film & TV</span>
             </a>
-            <a href="Agenda.html" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4">
+            <a href="#" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('agenda-content')">
                 <i class="fas fa-calendar-alt text-3xl"></i>
                 <span class="text-lg font-semibold">Agenda Warga</span>
             </a>
@@ -77,6 +126,19 @@
                 </div>
             </div>
             <p class="mt-4">Kunjungi <a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="text-blue-600 hover:underline" target="_blank">situs streaming</a> untuk menonton film dan TV gratis.</p>
+        </section>
+
+        <!-- Komentar untuk Pak RT: Section ini berisi daftar agenda warga, seperti gotong royong atau arisan. Anda dapat menambahkan agenda baru di sini dengan mengedit bagian ini. -->
+        <section id="agenda-content" class="hidden fade-in">
+            <h2 class="section-title text-2xl font-bold mb-4">Agenda Warga</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">Daftar Agenda</h3>
+                <ul class="list-disc pl-6">
+                    <li>Gotong Royong: 25 September 2025, Pukul 07.00 di Lapangan RT 07</li>
+                    <li>Arisan RT: 28 September 2025, Pukul 15.00 di Balai RT</li>
+                </ul>
+                <p class="mt-4">Untuk menambahkan agenda baru, silakan hubungi pengurus RT 07.</p>
+            </div>
         </section>
 
         <!-- Komentar untuk Pak RT: Section ini berisi daftar pengumuman penting untuk warga, seperti rapat atau pemeliharaan jaringan. Anda dapat menambahkan pengumuman baru di sini dengan mudah. -->
@@ -140,7 +202,7 @@
     <!-- Komentar untuk Pak RT: Script ini mengontrol tampilan section. Ketika warga mengklik menu atau tombol, section yang sesuai akan ditampilkan, dan yang lain akan disembunyikan. -->
     <script>
         function showSection(sectionId) {
-            const sections = ['home-content', 'film-content', 'pengumuman-content', 'cctv-content', 'internet-content'];
+            const sections = ['home-content', 'film-content', 'agenda-content', 'pengumuman-content', 'cctv-content', 'internet-content'];
             sections.forEach(id => {
                 const section = document.getElementById(id);
                 if (section) {
@@ -156,4 +218,4 @@
         showSection('home-content');
     </script>
 </body>
-    </html>
+</html>
