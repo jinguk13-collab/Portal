@@ -16,6 +16,9 @@
         .gradient-grey {
             background: linear-gradient(135deg, #4b5563, #9ca3af);
         }
+        .gradient-green {
+            background: linear-gradient(135deg, #059669, #34d399);
+        }
         .btn-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -40,6 +43,11 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .video-container iframe {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -55,9 +63,10 @@
             <nav class="mt-4 md:mt-0">
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
                     <li><a href="#" class="hover:underline" onclick="showSection('home')">Home</a></li>
-                    <li><a href="#" class="hover:underline" onclick="showSection('film')">Film & TV</a></li>
-                    <li><a href="#" class="hover:underline" onclick="showSection('agenda')">Agenda Warga</a></li>
+                    <li><a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="hover:underline">Film & TV</a></li>
+                    <li><a href="agenda.html" class="hover:underline">Agenda Warga</a></li>
                     <li><a href="#" class="hover:underline" onclick="showSection('pengumuman')">Pengumuman</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('cctv')">CCTV Jogja</a></li>
                     <li><a href="#" class="hover:underline">Internet Status</a></li>
                 </ul>
             </nav>
@@ -70,19 +79,19 @@
             <ul class="list-disc pl-6 mb-6">
                 <li>Internet tersedia 24 jam untuk warga</li>
                 <li>Nonton film & TV gratis untuk semua warga</li>
-                <li>Cek jadwal kegiatan & pengumuman penting di sini</li>
+                <li>Cek jadwal kegiatan, pengumuman, dan CCTV Jogja di sini</li>
             </ul>
             <div class="video-container mb-6">
                 <iframe width="100%" height="450" src="https://geo.dailymotion.com/player.html?video=k46igSmSMGBIiWsXtWk" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
-        <section class="main-buttons grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <a href="#" class="btn-card bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('film')">
+        <section class="main-buttons grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="btn-card bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 rounded-lg flex items-center space-x-4">
                 <i class="fas fa-play-circle text-3xl"></i>
                 <span class="text-lg font-semibold">Film & TV</span>
             </a>
-            <a href="#" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('agenda')">
+            <a href="agenda.html" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4">
                 <i class="fas fa-calendar-alt text-3xl"></i>
                 <span class="text-lg font-semibold">Agenda Warga</span>
             </a>
@@ -90,12 +99,15 @@
                 <i class="fas fa-bullhorn text-3xl"></i>
                 <span class="text-lg font-semibold">Pengumuman</span>
             </a>
+            <a href="#" class="btn-card bg-gradient-to-r from-green-600 to-green-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('cctv')">
+                <i class="fas fa-video text-3xl"></i>
+                <span class="text-lg font-semibold">CCTV Jogja</span>
+            </a>
         </section>
 
         <section id="film-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Film & TV</h2>
             <div id="film-list" class="content-grid">
-                <!-- Contoh film -->
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h3 class="font-semibold">Film Lokal</h3>
                     <p>Nikmati film lokal terbaru untuk warga RT 07.</p>
@@ -109,25 +121,12 @@
 
         <section id="agenda-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Agenda Warga</h2>
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-2">Tambah Agenda Baru</h3>
-                <form id="agendaForm" class="bg-white p-4 rounded-lg shadow-md">
-                    <label for="agendaDate" class="block mb-2 font-medium">Tanggal:</label>
-                    <input type="date" id="agendaDate" class="w-full p-2 border rounded mb-4" required>
-                    <label for="agendaTime" class="block mb-2 font-medium">Waktu:</label>
-                    <input type="time" id="agendaTime" class="w-full p-2 border rounded mb-4" required>
-                    <label for="agendaTitle" class="block mb-2 font-medium">Kegiatan:</label>
-                    <input type="text" id="agendaTitle" class="w-full p-2 border rounded mb-4" placeholder="Masukkan nama kegiatan" required>
-                    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Tambah Agenda</button>
-                </form>
-            </div>
-            <div id="agenda-list" class="content-grid"></div>
+            <p>Silakan kunjungi <a href="agenda.html" class="text-blue-600 hover:underline">halaman Agenda Warga</a> untuk melihat dan menambah agenda.</p>
         </section>
 
         <section id="pengumuman-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Pengumuman</h2>
             <div id="pengumuman-list" class="content-grid">
-                <!-- Contoh pengumuman -->
                 <div class="bg-white p-4 rounded-lg shadow-md">
                     <h3 class="font-semibold">Rapat Warga</h3>
                     <p>Rapat warga akan diadakan pada 20 September 2025 di Balai RT 07.</p>
@@ -138,6 +137,32 @@
                 </div>
             </div>
         </section>
+
+        <section id="cctv-content" class="hidden fade-in">
+            <h2 class="section-title text-2xl font-bold mb-4">CCTV Jogja - Tugu Kota</h2>
+            <p class="mb-4">Pantau lalu lintas dan situasi di sekitar Tugu Yogyakarta secara langsung melalui CCTV resmi dari Pemerintah Daerah Istimewa Yogyakarta.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">CCTV Simpang Tugu Jogja</h3>
+                <div class="video-container">
+                    <iframe src="https://mam.jogjaprov.go.id/cctvs/?lokasi=Simpang%20Tugu" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">Sumber: <a href="https://mam.jogjaprov.go.id/cctvs/" class="text-blue-600 hover:underline" target="_blank">CCTV DIY</a> | Untuk tampilan penuh, kunjungi <a href="https://cctv.jogjakota.go.id/" class="text-blue-600 hover:underline" target="_blank">CCTV Kota Jogja</a>.</p>
+            </div>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h4 class="font-semibold">Petunjuk Penggunaan</h4>
+                    <ul class="list-disc pl-4 mt-2">
+                        <li>Gunakan browser Chrome untuk streaming optimal.</li>
+                        <li>Pastikan koneksi internet stabil.</li>
+                        <li>CCTV ini membantu memantau lalu lintas di Tugu Yogyakarta.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h4 class="font-semibold">Lokasi Lainnya</h4>
+                    <p>Jelajahi CCTV lain di Jogja melalui aplikasi <a href="https://play.google.com/store/apps/details?id=com.panticode.matajogja" class="text-blue-600 hover:underline" target="_blank">Mata Jogja</a> atau situs resmi <a href="https://dishub.jogjaprov.go.id/atcs-diy" class="text-blue-600 hover:underline" target="_blank">ATCS DIY</a>.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-blue-800 text-white py-4 text-center">
@@ -145,52 +170,21 @@
     </footer>
 
     <script>
-        // Inisialisasi agenda dari localStorage
-        let agendas = JSON.parse(localStorage.getItem('agendas')) || [];
-
-        // Fungsi untuk menampilkan agenda
-        function displayAgendas() {
-            const agendaList = document.getElementById('agenda-list');
-            agendaList.innerHTML = '';
-            agendas.forEach(agenda => {
-                const div = document.createElement('div');
-                div.className = 'bg-white p-4 rounded-lg shadow-md';
-                div.innerHTML = `
-                    <h3 class="font-semibold">${agenda.title}</h3>
-                    <p><strong>Tanggal:</strong> ${agenda.date}</p>
-                    <p><strong>Waktu:</strong> ${agenda.time}</p>
-                `;
-                agendaList.appendChild(div);
-            });
-        }
-
-        // Fungsi untuk menyimpan agenda
-        document.getElementById('agendaForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const date = document.getElementById('agendaDate').value;
-            const time = document.getElementById('agendaTime').value;
-            const title = document.getElementById('agendaTitle').value;
-
-            agendas.push({ date, time, title });
-            localStorage.setItem('agendas', JSON.stringify(agendas));
-            displayAgendas();
-            document.getElementById('agendaForm').reset();
-        });
-
         // Fungsi untuk menampilkan/menyembunyikan section
         function showSection(sectionId) {
-            const sections = ['home-content', 'film-content', 'agenda-content', 'pengumuman-content'];
+            const sections = ['home-content', 'film-content', 'agenda-content', 'pengumuman-content', 'cctv-content'];
             sections.forEach(id => {
                 const section = document.getElementById(id);
-                section.classList.add('hidden');
-                if (id === sectionId) {
-                    section.classList.remove('hidden');
+                if (section) {
+                    section.classList.add('hidden');
+                    if (id === sectionId) {
+                        section.classList.remove('hidden');
+                    }
                 }
             });
         }
 
         // Inisialisasi tampilan
-        displayAgendas();
         showSection('home-content');
     </script>
 </body>
