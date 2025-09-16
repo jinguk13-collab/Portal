@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aplikasi Agenda Saya</title>
+    <title>Aplikasi Agenda Dusun Karangturi RT 07</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: flex-start;
             padding: 20px;
@@ -94,20 +95,63 @@
             color: white;
             font-weight: bold;
         }
+        .calendar .has-agenda {
+            background-color: #ffeb3b;
+        }
+        nav {
+            width: 100%;
+            background-color: #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="indeks.html">Home</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#calendar">Kalender</a>
+    </nav>
 
-
+    <div class="container form-container">
+        <h2>Tambah Agenda Dusun Karangturi RT 07</h2>
+        <form id="agendaForm">
+            <label for="agendaDate">Tanggal:</label>
+            <input type="date" id="agendaDate" required>
+            <label for="agendaTime">Waktu:</label>
+            <input type="time" id="agendaTime" required>
+            <label for="agendaTitle">Judul Agenda:</label>
+            <input type="text" id="agendaTitle" placeholder="Masukkan judul agenda" required>
+            <button type="submit">Tambah Agenda</button>
+        </form>
+    </div>
 
     <div class="container agenda-container">
-        <h2>Daftar Agenda</h2>
-        <ul id="agendaList">
-            </ul>
+        <h2>Daftar Agenda Dusun Karangturi RT 07</h2>
+        <ul id="agendaList"></ul>
     </div>
 
     <div class="container calendar-container">
         <h2>Kalender</h2>
+        <div class="calendar-header">
+            <button onclick="prevMonth()">Previous</button>
+            <h3 id="monthYear"></h3>
+            <button onclick="nextMonth()">Next</button>
+        </div>
         <div class="calendar">
             <table id="calendarTable">
                 <thead>
@@ -121,8 +165,7 @@
                         <th>Min</th>
                     </tr>
                 </thead>
-                <tbody>
-                    </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
@@ -131,56 +174,86 @@
         const agendaForm = document.getElementById('agendaForm');
         const agendaList = document.getElementById('agendaList');
         const calendarTable = document.getElementById('calendarTable').getElementsByTagName('tbody')[0];
+        const monthYear = document.getElementById('monthYear');
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
+        let agendas = JSON.parse(localStorage.getItem('agendas')) || [];
+
+        // Fungsi untuk menyimpan agenda ke localStorage
+        function saveAgenda(agenda) {
+            agendas.push(agenda);
+            localStorage.setItem('agendas', JSON.stringify(agendas));
+            displayAgendas(agenda.date);
+            generateCalendar(currentMonth, currentYear);
+        }
+
+        // Fungsi untuk menampilkan agenda berdasarkan tanggal
+        function displayAgendas(selectedDate) {
+            agendaList.innerHTML = '';
+            const filteredAgendas = agendas.filter(agenda => agenda.date === selectedDate);
+            filteredAgendas.forEach(agenda => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <h3>${agenda.title}</h3>
+                    <p><strong>Tanggal:</strong> ${agenda.date}</p>
+                    <p><strong>Waktu:</strong> ${agenda.time}</p>
+                `;
+                agendaList.appendChild(listItem);
+            });
+        }
 
         // Fungsi untuk menambahkan agenda baru
         agendaForm.addEventListener('submit', function(event) {
             event.preventDefault();
-
             const date = document.getElementById('agendaDate').value;
             const time = document.getElementById('agendaTime').value;
             const title = document.getElementById('agendaTitle').value;
 
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <h3>${title}</h3>
-                <p><strong>Tanggal:</strong> ${date}</p>
-                <p><strong>Waktu:</strong> ${time}</p>
-            `;
-
-            agendaList.appendChild(listItem);
-            
-            // Mengosongkan form
+            const agenda = { date, time, title };
+            saveAgenda(agenda);
             agendaForm.reset();
         });
 
         // Fungsi untuk membuat kalender
         function generateCalendar(month, year) {
             const today = new Date();
-            const firstDay = (new Date(year, month)).getDay();
+            const firstDay = new Date(year, month).getDay();
             const daysInMonth = 32 - new Date(year, month, 32).getDate();
-            
-            calendarTable.innerHTML = "";
+            calendarTable.innerHTML = '';
+
+            // Update nama bulan dan tahun
+            const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            monthYear.textContent = `${monthNames[month]} ${year}`;
 
             let date = 1;
             for (let i = 0; i < 6; i++) {
-                const row = document.createElement("tr");
-
+                const row = document.createElement('tr');
                 for (let j = 0; j < 7; j++) {
                     if (i === 0 && j < (firstDay === 0 ? 6 : firstDay - 1)) {
-                        const cell = document.createElement("td");
+                        const cell = document.createElement('td');
                         row.appendChild(cell);
                     } else if (date > daysInMonth) {
                         break;
                     } else {
-                        const cell = document.createElement("td");
+                        const cell = document.createElement('td');
                         cell.textContent = date;
+                        const cellDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                         
+                        // Tandai hari ini
                         if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                            cell.classList.add("current-day");
+                            cell.classList.add('current-day');
                         }
-                        
+
+                        // Tandai tanggal dengan agenda
+                        if (agendas.some(agenda => agenda.date === cellDate)) {
+                            cell.classList.add('has-agenda');
+                        }
+
+                        // Klik untuk menampilkan agenda
+                        cell.addEventListener('click', () => {
+                            displayAgendas(cellDate);
+                        });
+
                         row.appendChild(cell);
                         date++;
                     }
@@ -189,15 +262,27 @@
             }
         }
 
-        // Memanggil fungsi untuk menampilkan kalender saat halaman dimuat
+        // Fungsi untuk navigasi bulan
+        function prevMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        }
+
+        // Inisialisasi kalender saat halaman dimuat
         generateCalendar(currentMonth, currentYear);
     </script>
-    <nav class="bg-blue-600 text-white p-4 flex space-x-6">
-  <a href="indeks.html" class="hover:underline">Home</a>
-    </nav>
 </body>
 </html>
-
-
-
-kegiatan dusun karangturi RT 07 Baturetno Banguntapan Bantul
