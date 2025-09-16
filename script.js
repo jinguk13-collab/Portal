@@ -22,26 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         homeSection.classList.add('hidden');
     }
 
-    // Data Film (simulasi dari server)
-    const films = [
-        { title: "Judul Film 1", desc: "Deskripsi singkat tentang film ini.", imageUrl: "https://via.placeholder.com/250x150?text=Film+1" },
-        { title: "Judul Film 2", desc: "Film ini bercerita tentang petualangan seru.", imageUrl: "https://via.placeholder.com/250x150?text=Film+2" },
-        { title: "Judul Film 3", desc: "Film komedi yang bisa membuat Anda tertawa.", imageUrl: "https://via.placeholder.com/250x150?text=Film+3" },
-        { title: "Judul Film 4", desc: "Film dokumenter tentang alam liar.", imageUrl: "https://via.placeholder.com/250x150?text=Film+4" }
-    ];
-
-    // Fungsi untuk memuat film ke halaman
-    function loadFilms() {
-        const filmListContainer = document.getElementById('film-list');
-        films.forEach(film => {
-            const filmCard = document.createElement('div');
-            filmCard.classList.add('card');
-            filmCard.innerHTML = `
-                <img src="${film.imageUrl}" alt="${film.title}">
-                <h3>${film.title}</h3>
-                <p>${film.desc}</p>
-            `;
-            filmListContainer.appendChild(filmCard);
         });
     }
 
