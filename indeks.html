@@ -51,6 +51,7 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
+    <!-- Komentar untuk Pak RT: Ini adalah header halaman yang berisi logo RT 07 Net dan menu navigasi. Menu ini memungkinkan warga beralih antar section seperti Home, Film, Agenda, Pengumuman, CCTV, dan Status Internet. -->
     <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-6">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
             <div class="logo flex items-center space-x-4">
@@ -62,18 +63,19 @@
             </div>
             <nav class="mt-4 md:mt-0">
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
-                    <li><a href="#" class="hover:underline" onclick="showSection('home')">Home</a></li>
-                    <li><a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="hover:underline">Film & TV</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('home-content')">Home</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('film-content')">Film & TV</a></li>
                     <li><a href="Agenda.html" class="hover:underline">Agenda Warga</a></li>
-                    <li><a href="#" class="hover:underline" onclick="showSection('pengumuman')">Pengumuman</a></li>
-                    <li><a href="https://cctv.jogjakota.go.id/" class="hover:underline" onclick="showSection('cctv')">CCTV Jogja</a></li>
-                    <li><a href="https://www.speedtest.net" class="hover:underline">Internet Status</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('pengumuman-content')">Pengumuman</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('cctv-content')">CCTV Jogja</a></li>
+                    <li><a href="#" class="hover:underline" onclick="showSection('internet-content')">Internet Status</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8">
+        <!-- Komentar untuk Pak RT: Bagian ini adalah konten utama yang berisi semua section (Home, Film, Pengumuman, CCTV, dan Internet Status). Hanya satu section yang ditampilkan pada satu waktu, dikontrol oleh JavaScript di bagian bawah. -->
         <section id="home-content" class="fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Selamat Datang di Portal RT 07 Net</h2>
             <ul class="list-disc pl-6 mb-6">
@@ -86,25 +88,31 @@
             </div>
         </section>
 
+        <!-- Komentar untuk Pak RT: Tombol-tombol ini memungkinkan warga mengakses section yang berbeda dengan cepat. Setiap tombol memiliki animasi hover untuk pengalaman pengguna yang lebih baik. -->
         <section class="main-buttons grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="btn-card bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 rounded-lg flex items-center space-x-4">
+            <a href="#" class="btn-card bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('film-content')">
                 <i class="fas fa-play-circle text-3xl"></i>
                 <span class="text-lg font-semibold">Film & TV</span>
             </a>
-            <a href="agenda.html" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4">
+            <a href="Agenda.html" class="btn-card bg-gradient-to-r from-purple-600 to-purple-400 text-white p-6 rounded-lg flex items-center space-x-4">
                 <i class="fas fa-calendar-alt text-3xl"></i>
                 <span class="text-lg font-semibold">Agenda Warga</span>
             </a>
-            <a href="#" class="btn-card bg-gradient-to-r from-gray-600 to-gray-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('pengumuman')">
+            <a href="#" class="btn-card bg-gradient-to-r from-gray-600 to-gray-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('pengumuman-content')">
                 <i class="fas fa-bullhorn text-3xl"></i>
                 <span class="text-lg font-semibold">Pengumuman</span>
             </a>
-            <a href="#" class="btn-card bg-gradient-to-r from-green-600 to-green-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('cctv')">
+            <a href="#" class="btn-card bg-gradient-to-r from-green-600 to-green-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('cctv-content')">
                 <i class="fas fa-video text-3xl"></i>
                 <span class="text-lg font-semibold">CCTV Jogja</span>
             </a>
+            <a href="#" class="btn-card bg-gradient-to-r from-teal-600 to-teal-400 text-white p-6 rounded-lg flex items-center space-x-4" onclick="showSection('internet-content')">
+                <i class="fas fa-signal text-3xl"></i>
+                <span class="text-lg font-semibold">Internet Status</span>
+            </a>
         </section>
 
+        <!-- Komentar untuk Pak RT: Section ini menampilkan informasi tentang film dan TV yang tersedia untuk warga. Kontennya sederhana, tetapi dapat diperbarui dengan daftar film yang lebih lengkap di masa depan. -->
         <section id="film-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Film & TV</h2>
             <div id="film-list" class="content-grid">
@@ -117,13 +125,10 @@
                     <p>Tonton sinetron favorit setiap hari.</p>
                 </div>
             </div>
+            <p class="mt-4">Kunjungi <a href="https://rebahinxxi1.work/?__cf_chl_rt_tk=AOau7JvVZdd5qH7E3LKdXD8o_kaZLBtUI4Ug2lllnks-1758007430-1.0.1.1-mK08koeoFHPoru0y0m8BuzdevAtpXTt9EfTNJoKNTh4" class="text-blue-600 hover:underline" target="_blank">situs streaming</a> untuk menonton film dan TV gratis.</p>
         </section>
 
-        <section id="agenda-content" class="hidden fade-in">
-            <h2 class="section-title text-2xl font-bold mb-4">Agenda Warga</h2>
-            <p>Silakan kunjungi <a href="Agenda.html" class="text-blue-600 hover:underline">halaman Agenda Warga</a> untuk melihat dan menambah agenda.</p>
-        </section>
-
+        <!-- Komentar untuk Pak RT: Section ini berisi daftar pengumuman penting untuk warga, seperti rapat atau pemeliharaan jaringan. Anda dapat menambahkan pengumuman baru di sini dengan mudah. -->
         <section id="pengumuman-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">Pengumuman</h2>
             <div id="pengumuman-list" class="content-grid">
@@ -138,6 +143,7 @@
             </div>
         </section>
 
+        <!-- Komentar untuk Pak RT: Section ini memungkinkan warga memantau CCTV di Tugu Jogja secara langsung. Pastikan koneksi internet stabil untuk streaming yang lancar. -->
         <section id="cctv-content" class="hidden fade-in">
             <h2 class="section-title text-2xl font-bold mb-4">CCTV Jogja - Tugu Kota</h2>
             <p class="mb-4">Pantau lalu lintas dan situasi di sekitar Tugu Yogyakarta secara langsung melalui CCTV resmi dari Pemerintah Daerah Istimewa Yogyakarta.</p>
@@ -163,16 +169,27 @@
                 </div>
             </div>
         </section>
+
+        <!-- Komentar untuk Pak RT: Section ini menunjukkan status jaringan internet RT 07. Warga dapat memeriksa kecepatan internet melalui tautan ke Speedtest.net. -->
+        <section id="internet-content" class="hidden fade-in">
+            <h2 class="section-title text-2xl font-bold mb-4">Internet Status</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">Cek Status Jaringan RT 07 Net</h3>
+                <p>Jaringan internet RT 07 tersedia 24 jam dengan kecepatan stabil. Untuk memeriksa kecepatan internet Anda, silakan kunjungi <a href="https://www.speedtest.net" class="text-blue-600 hover:underline" target="_blank">Speedtest.net</a>.</p>
+                <p class="mt-4">Jika ada gangguan jaringan, pengumuman akan ditampilkan di section "Pengumuman".</p>
+            </div>
+        </section>
     </main>
 
+    <!-- Komentar untuk Pak RT: Footer ini berisi informasi hak cipta dan lokasi RT 07. Anda dapat mengubah tahun atau informasi lainnya jika diperlukan. -->
     <footer class="bg-blue-800 text-white py-4 text-center">
         <p>&copy; 2025 RT 07 Net - Dusun Karangturi, Baturetno, Banguntapan, Bantul</p>
     </footer>
 
+    <!-- Komentar untuk Pak RT: Script ini mengontrol tampilan section. Ketika warga mengklik menu atau tombol, section yang sesuai akan ditampilkan, dan yang lain akan disembunyikan. -->
     <script>
-        // Fungsi untuk menampilkan/menyembunyikan section
         function showSection(sectionId) {
-            const sections = ['home-content', 'film-content', 'agenda-content', 'pengumuman-content', 'cctv-content'];
+            const sections = ['home-content', 'film-content', 'pengumuman-content', 'cctv-content', 'internet-content'];
             sections.forEach(id => {
                 const section = document.getElementById(id);
                 if (section) {
@@ -188,4 +205,4 @@
         showSection('home-content');
     </script>
 </body>
-</html>
+    </html>
